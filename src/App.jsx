@@ -1,60 +1,65 @@
 import * as React from "react";
 import IconButton from "@mui/material/IconButton";
-import { Box, Grid, CssBaseline, Container, Typography } from "@mui/material";
+import { Box, Grid, CssBaseline } from "@mui/material";
 import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import { Form, Formik } from "formik";
-import * as Yup from "yup";
-import TextField from "./components/Texftield/texfield";
-import Select from "./components/Select/Select";
-import voivodeship from "./data/voivodeship.json";
-import Checkbox from "./components/Checkbox/Checkbox";
-import Button from "./components/Button/ButtonWrapper";
-
+// import { Form, Formik } from "formik";
+// import * as Yup from "yup";
+// import TextField from "./components/Texftield/texfield";
+// import Select from "./components/Select/Select";
+// import voivodeship from "./data/voivodeship.json";
+// import Checkbox from "./components/Checkbox/Checkbox";
+// import Button from "./components/Button/ButtonWrapper";
+import Step1 from "./views/Step1";
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
-const InitialFormState = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  voivodeship: "",
-  postalCode: "",
-  address1: "",
-  address2: "",
-  address3: "",
-  city: "",
-  message: "",
-  termsOfService: "false",
-};
+// const InitialFormState = {
+//   firstName: "",
+//   lastName: "",
+//   email: "",
+//   phone: "",
+//   voivodeship: "",
+//   postalCode: "",
+//   address1: "",
+//   address2: "",
+//   address3: "",
+//   city: "",
+//   message: "",
+//   termsOfService: "false",
+// };
 
-const formValidation = Yup.object().shape({
-  firstName: Yup.string().required("Pole nie może być puste."),
-  lastName: Yup.string().required("Pole nie może być puste."),
-  email: Yup.string()
-    .email("Błędny mail.")
-    .required("Pole nie może być puste."),
-  phone: Yup.number()
-    .integer()
-    .typeError("Please enter a valid phone number")
-    .required("Pole nie może być puste."),
-  address1: Yup.string().required("Required"),
-  address2: Yup.number()
-    .integer()
-    .typeError("Please enter a valid phone number")
-    .required("Pole nie może być puste."),
-  address3: Yup.number()
-    .integer()
-    .typeError("Please enter a valid phone number"),
-  city: Yup.string().required("Required"),
-  voivodeship: Yup.string().required("Required"),
-  postalCode: Yup.number().integer().required("Required"),
-  message: Yup.string(),
-  termsOfService: Yup.boolean()
-    .oneOf([true], "The terms and conditions must be accepted.")
-    .required("The terms and conditions must be accepted."),
-});
+// const formValidation = Yup.object().shape({
+//   firstName: Yup.string()
+//     .min(2, "Imię powinno być dłuższe niż 2 litery")
+//     .max(50, "Imię powinno być krótsze niż 50 liter")
+//     .required("Pole obowiązkowe"),
+//   lastName: Yup.string()
+//     .min(2, "Nazwisko powinno być dłuższe niż 2 litery")
+//     .max(50, "Nazwisko powinno być dłuższe niż 2 litery")
+//     .required("Pole obowiązkowe"),
+//   email: Yup.string().email("Błędny mail.").required("Pole obowiązkowe"),
+//   phone: Yup.number()
+//     .integer()
+//     .min(9)
+//     // .typeError("Podaj prawidłowy numer telefonu")
+//     .required("Pole obowiązkowe"),
+//   address1: Yup.string().required("Pole obowiązkowe"),
+//   address2: Yup.number()
+//     .min(1)
+//     // .typeError("Please enter a valid phone number")
+//     .required("Pole obowiązkowe"),
+//   address3: Yup.number().typeError("Please enter a valid phone number"),
+//   city: Yup.string()
+//     .min(3, "Miasto musi zawierać co najmniej 3 litery.")
+//     .required("Pole obowiązkowe"),
+//   voivodeship: Yup.string().required("Pole obowiązkowe"),
+//   postalCode: Yup.number().min(5).integer().required("Pole obowiązkowe"),
+//   message: Yup.string(),
+//   termsOfService: Yup.boolean()
+//     .oneOf([true], "The terms and conditions must be accepted.")
+//     .required("The terms and conditions must be accepted."),
+// });
 
 function App() {
   const theme = useTheme();
@@ -85,8 +90,10 @@ function App() {
             )}
           </IconButton>
         </Box>
+        <Step1 />
       </Grid>
-      <Grid item xs={12}>
+
+      {/* <Grid item xs={12}>
         <Container maxWidth="md">
           <Formik
             initialValues={{ ...InitialFormState }}
@@ -96,51 +103,61 @@ function App() {
             }}
           >
             <Form>
-              <Grid container spacing={2}>
+              <Grid
+                container
+                spacing={2}
+                sx={{
+                  border: "solid",
+                  borderColor: "#BEBEBE",
+                  borderRadius: "8px",
+                  borderWidth: "1px",
+                  pr: "16px",
+                }}
+              >
                 <Grid item xs={12}>
                   <Typography>TWOJE DANE</Typography>
                 </Grid>
-                <Grid items xs={6}>
+                <Grid item xs={6}>
                   <TextField name="firstName" label="Imię" />
                 </Grid>
-                <Grid items xs={6}>
+                <Grid item xs={6}>
                   <TextField name="lastName" label="Nazwisko" />
                 </Grid>
-                <Grid items xs={12}>
+                <Grid item xs={12}>
                   <TextField name="email" label="E-mail" />
                 </Grid>
-                <Grid items xs={12}>
+                <Grid item xs={12}>
                   <TextField name="phone" label="Telefon" />
                 </Grid>
                 <Grid item xs={12}>
                   <Typography>ADRES</Typography>
                 </Grid>
-                <Grid items xs={12}>
+                <Grid item xs={12}>
                   <Select
                     name="voivodeship"
                     label="Województwo"
                     options={voivodeship}
                   />
                 </Grid>
-                <Grid items xs={6}>
+                <Grid item xs={6}>
                   <TextField name="postalCode" label="Kod pocztowy" />
                 </Grid>
-                <Grid items xs={6}>
+                <Grid item xs={6}>
                   <TextField name="city" label="Miejscowość" />
                 </Grid>
-                <Grid items xs={12}>
+                <Grid item xs={12}>
                   <TextField name="address1" label="Ulica" />
                 </Grid>
-                <Grid items xs={6}>
+                <Grid item xs={6}>
                   <TextField name="address2" label="Numer domu" />
                 </Grid>
-                <Grid items xs={6}>
+                <Grid item xs={6}>
                   <TextField name="address3" label="Numer mieszkania" />
                 </Grid>
                 <Grid item xs={12}>
                   <Typography>INFO</Typography>
                 </Grid>
-                <Grid items xs={12}>
+                <Grid item xs={12}>
                   <TextField
                     name="message"
                     label="Tutaj możesz dodać komentarz."
@@ -151,18 +168,26 @@ function App() {
                 <Grid item xs={12}>
                   <Checkbox
                     name="termsOfService"
-                    legend="something something"
+                    // legend="something something"
                     label="Wyrażam zgodę"
                   />
                 </Grid>
-                <Grid item xs={4}>
-                  <Button>Wyślij</Button>
+                <Grid
+                  item
+                  xs={12}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    alignItems: "center",
+                  }}
+                >
+                  <Button sx={{ maxWidth: "150" }}>Wyślij</Button>
                 </Grid>
               </Grid>
             </Form>
           </Formik>
         </Container>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }
