@@ -11,7 +11,8 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 // import voivodeship from "./data/voivodeship.json";
 // import Checkbox from "./components/Checkbox/Checkbox";
 // import Button from "./components/Button/ButtonWrapper";
-import Step1 from "./views/Step1";
+// import Step1 from "./views/Step1";
+import Questionnaire from "./views/Questionnaire";
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 // const InitialFormState = {
@@ -90,7 +91,7 @@ function App() {
             )}
           </IconButton>
         </Box>
-        <Step1 />
+        <Questionnaire />
       </Grid>
 
       {/* <Grid item xs={12}>

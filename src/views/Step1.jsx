@@ -7,7 +7,6 @@ import TextField from "../components/Texftield/texfield";
 import Select from "../components/Select/Select";
 import voivodeship from "../data/voivodeship.json";
 import Checkbox from "../components/Checkbox/Checkbox";
-import Button from "../components/Button/ButtonWrapper";
 
 const InitialFormState = {
   firstName: "",
@@ -143,12 +142,10 @@ const Step1 = () => {
                   xs={12}
                   sx={{
                     display: "flex",
-                    justifyContent: "flex-end",
+                    justifyContent: "center",
                     alignItems: "center",
                   }}
-                >
-                  <Button sx={{ maxWidth: "150" }}>Wyślij</Button>
-                </Grid>
+                ></Grid>
               </Grid>
             </Form>
           </Formik>
