@@ -1,5 +1,3 @@
-import React from "react";
-
 const Step4 = () => {
   return <div>Hello3</div>;
 };

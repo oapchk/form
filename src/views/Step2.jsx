@@ -1,7 +1,7 @@
-import React from "react";
+import { Container } from "@mui/material";
 
 const Step2 = () => {
-  return <div>Hello</div>;
+  return <Container maxWidth="md">Hello</Container>;
 };
 
 export default Step2;

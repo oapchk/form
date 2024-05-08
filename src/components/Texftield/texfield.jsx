@@ -17,7 +17,11 @@ const TextfieldWrapper = ({ name, ...otherProps }) => {
     configTextfield.helperText = meta.error;
   }
 
-  return <TextField {...configTextfield} />;
+  return (
+    <div>
+      <TextField {...configTextfield} />
+    </div>
+  );
 };
 
 export default TextfieldWrapper;

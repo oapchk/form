@@ -7,6 +7,7 @@ import {
   FormLabel,
 } from "@mui/material";
 import { useField, useFormikContext } from "formik";
+import { Typography } from "@mui/material";
 
 const CheckboxWrapper = ({ name, label, legend, ...otherProps }) => {
   const { setFieldValue } = useFormikContext();
@@ -25,6 +26,7 @@ const CheckboxWrapper = ({ name, label, legend, ...otherProps }) => {
   const configFormControl = {};
   if (meta && meta.touched && meta.error) {
     configFormControl.error = true;
+    configFormControl.helperText = meta.error;
   }
 
   return (
@@ -35,6 +37,11 @@ const CheckboxWrapper = ({ name, label, legend, ...otherProps }) => {
           control={<Checkbox {...configCheckbox} />}
           label={label}
         />
+        {meta.touched && meta.error ? (
+          <Typography variant="caption" style={{ color: "red" }}>
+            {meta.error}
+          </Typography>
+        ) : null}
       </FormGroup>
     </FormControl>
   );
