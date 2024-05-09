@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Checkbox,
   FormControl,
@@ -8,8 +7,9 @@ import {
 } from "@mui/material";
 import { useField, useFormikContext } from "formik";
 import { Typography } from "@mui/material";
+import PropTypes from "prop-types";
 
-const CheckboxWrapper = ({ name, label, legend, ...otherProps }) => {
+const CheckboxWrapper = ({ name, label, legend }) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
 
@@ -47,4 +47,9 @@ const CheckboxWrapper = ({ name, label, legend, ...otherProps }) => {
   );
 };
 
+CheckboxWrapper.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  legend: PropTypes.string.isRequired,
+};
 export default CheckboxWrapper;

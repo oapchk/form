@@ -1,6 +1,7 @@
 // import React from "react";
 import { TextField } from "@mui/material";
 import { useField } from "formik";
+import PropTypes from "prop-types";
 
 const TextfieldWrapper = ({ name, ...otherProps }) => {
   const [field, meta] = useField(name);
@@ -23,5 +24,7 @@ const TextfieldWrapper = ({ name, ...otherProps }) => {
     </div>
   );
 };
-
+TextfieldWrapper.propTypes = {
+  name: PropTypes.string.isRequired,
+};
 export default TextfieldWrapper;

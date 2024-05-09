@@ -10,7 +10,7 @@ const Step1 = () => {
     <div>
       <Grid item xs={12}>
         <Container maxWidth="md">
-          <Grid container spacing={2}>
+          <Grid container spacing={2} p={2}>
             <Grid item xs={12}>
               <Typography>TWOJE DANE</Typography>
             </Grid>

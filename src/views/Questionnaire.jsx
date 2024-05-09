@@ -3,7 +3,7 @@ import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
 import * as React from "react";
-import { Box, Container } from "@mui/material";
+import { Box, Container, Paper } from "@mui/material";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
@@ -82,14 +82,7 @@ function getContent(step) {
 const Questionnaire = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const isLastStep = activeStep === steps.length - 1;
-  // const formik = useFormikContext();
 
-  // const handleSubmit = async () => {
-  //   const isValid = await formik.validateForm();
-  //   if (isValid) {
-  //     setActiveStep(activeStep + 1);
-  //   }
-  // };
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
@@ -121,7 +114,7 @@ const Questionnaire = () => {
 
   return (
     <>
-      <Box sx={{ width: "100%" }}>
+      <Box sx={{ width: "100%", pb: 7 }}>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label) => (
             <Step key={label}>
@@ -130,31 +123,40 @@ const Questionnaire = () => {
           ))}
         </Stepper>
       </Box>
-      <Container maxWidth="md">
-        {activeStep === steps.length ? (
-          <Summary />
-        ) : (
-          <Formik
-            initialValues={InitialFormState}
-            validationSchema={formValidation}
-            onSubmit={handleSubmit}
-          >
-            {({ isSubmitting }) => (
-              <Form>
-                <Typography>{getContent(activeStep + 1)}</Typography>
-                <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-                  <Button disabled={activeStep === 0} onClick={handleBack}>
-                    Back
-                  </Button>
-                  <Box sx={{ flex: "1 1 auto" }} />
-                  <Button type="submit" disabled={isSubmitting}>
-                    {isLastStep ? "Submit" : "Next"}
-                  </Button>
-                </Box>
-              </Form>
-            )}
-          </Formik>
-        )}
+      <Container maxWidth="md" sx={{ pb: 5 }}>
+        <Paper elevation={7}>
+          {activeStep === steps.length ? (
+            <Summary />
+          ) : (
+            <Formik
+              initialValues={InitialFormState}
+              validationSchema={formValidation}
+              onSubmit={handleSubmit}
+            >
+              {({ isSubmitting }) => (
+                <Form>
+                  <Typography>{getContent(activeStep + 1)}</Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      pb: 2,
+                      paddingInline: 2,
+                    }}
+                  >
+                    <Button disabled={activeStep === 0} onClick={handleBack}>
+                      Back
+                    </Button>
+                    <Box sx={{ flex: "1 1 auto" }} />
+                    <Button type="submit" disabled={isSubmitting}>
+                      {isLastStep ? "Submit" : "Next"}
+                    </Button>
+                  </Box>
+                </Form>
+              )}
+            </Formik>
+          )}
+        </Paper>
       </Container>
     </>
   );

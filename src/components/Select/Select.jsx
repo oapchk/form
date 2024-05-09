@@ -1,5 +1,6 @@
 import { TextField, MenuItem } from "@mui/material";
 import { useField, useFormikContext } from "formik";
+import PropTypes from "prop-types";
 
 const Select = ({ name, options, ...otherProps }) => {
   const { setFieldValue } = useFormikContext();
@@ -35,6 +36,11 @@ const Select = ({ name, options, ...otherProps }) => {
       })}
     </TextField>
   );
+};
+
+Select.propTypes = {
+  name: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Select;
