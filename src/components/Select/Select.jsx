@@ -6,6 +6,10 @@ const Select = ({ name, options, ...otherProps }) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
 
+  // const handleChange = (e) => {
+  //   const { value } = e.target;
+  //   setFieldValue(name, value);
+  // };
   const handleChange = (e) => {
     const { value } = e.target;
     setFieldValue(name, value);
@@ -22,25 +26,23 @@ const Select = ({ name, options, ...otherProps }) => {
 
   if (meta && meta.touched && meta.error) {
     configSelect.error = true;
-    configSelect.helperText = meta.error;
+    configSelect.helpertext = meta.error;
   }
 
   return (
     <TextField {...configSelect}>
-      {Object.keys(options).map((item, id) => {
-        return (
-          <MenuItem key={id} value={item}>
-            {options[item]}
-          </MenuItem>
-        );
-      })}
+      {options.map((option, id) => (
+        <MenuItem key={id} value={option}>
+          {option}
+        </MenuItem>
+      ))}
     </TextField>
   );
 };
 
 Select.propTypes = {
   name: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  options: PropTypes.string.isRequired,
 };
 
 export default Select;

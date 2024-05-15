@@ -50,6 +50,6 @@ const CheckboxWrapper = ({ name, label, legend }) => {
 CheckboxWrapper.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  legend: PropTypes.string.isRequired,
+  // legend: PropTypes.string.isRequired,
 };
 export default CheckboxWrapper;

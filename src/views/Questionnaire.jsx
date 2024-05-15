@@ -12,7 +12,6 @@ import { Button } from "@mui/material";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import Summary from "./Summary";
-
 const InitialFormState = {
   firstName: "",
   lastName: "",
@@ -26,43 +25,65 @@ const InitialFormState = {
   city: "",
   message: "",
   termsOfService: "false",
+  dreamPet: "", // Dodajemy pole z Step3 do InitialFormState
+  haveGarden: "", // Dodajemy pole z Step3 do InitialFormState
+  havePets: "", // Dodajemy pole z Step3 do InitialFormState
+  preferedAge: "", // Dodajemy pole z Step3 do InitialFormState
+  preferedGender: "", // Dodajemy pole z Step3 do InitialFormState
+  preferedSize: "",
 };
+
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-const formValidation = Yup.object().shape({
-  firstName: Yup.string()
-    .min(2, "Imię powinno być dłuższe niż 2 litery")
-    .max(50, "Imię powinno być krótsze niż 50 liter")
-    .required("Pole obowiązkowe"),
-  lastName: Yup.string()
-    .min(2, "Nazwisko powinno być dłuższe niż 2 litery")
-    .max(50, "Nazwisko powinno być dłuższe niż 2 litery")
-    .required("Pole obowiązkowe"),
-  email: Yup.string().email("Błędny mail.").required("Pole obowiązkowe"),
-  phone: Yup.string()
-    .min(9)
-    .max(9)
-    .nullable()
-    .matches(phoneRegExp, "Phone number is not valid")
-    // .typeError("Podaj prawidłowy numer telefonu")
-    .required("Pole obowiązkowe"),
-  address1: Yup.string().required("Pole obowiązkowe"),
-  address2: Yup.number()
-    .min(1)
-    // .typeError("Please enter a valid phone number")
-    .required("Pole obowiązkowe"),
-  address3: Yup.number().typeError("Please enter a valid phone number"),
-  city: Yup.string()
-    .min(3, "Miasto musi zawierać co najmniej 3 litery.")
-    .required("Pole obowiązkowe"),
-  voivodeship: Yup.string().required("Pole obowiązkowe"),
-  postalCode: Yup.number().min(5).integer().required("Pole obowiązkowe"),
-  message: Yup.string(),
-  termsOfService: Yup.boolean()
-    .oneOf([true], "The terms and conditions must be accepted.")
-    .required("The terms and conditions must be accepted."),
-});
+const formValidation = [
+  Yup.object().shape({
+    firstName: Yup.string()
+      .min(2, "Imię powinno być dłuższe niż 2 litery")
+      .max(50, "Imię powinno być krótsze niż 50 liter")
+      .required("Pole obowiązkowe"),
+    lastName: Yup.string()
+      .min(2, "Nazwisko powinno być dłuższe niż 2 litery")
+      .max(50, "Nazwisko powinno być dłuższe niż 2 litery")
+      .required("Pole obowiązkowe"),
+    email: Yup.string().email("Błędny mail.").required("Pole obowiązkowe"),
+    phone: Yup.string()
+      .min(9)
+      .max(9)
+      .nullable()
+      .matches(phoneRegExp, "Phone number is not valid")
+      .required("Pole obowiązkowe"),
+    address1: Yup.string().required("Pole obowiązkowe"),
+    address2: Yup.number().min(1).required("Pole obowiązkowe"),
+    address3: Yup.number().typeError("Please enter a valid phone number"),
+    city: Yup.string()
+      .min(3, "Miasto musi zawierać co najmniej 3 litery.")
+      .required("Pole obowiązkowe"),
+    voivodeship: Yup.string().required("Pole obowiązkowe"),
+    postalCode: Yup.number().min(5).integer().required("Pole obowiązkowe"),
+    message: Yup.string(),
+    termsOfService: Yup.boolean()
+      .oneOf([true], "The terms and conditions must be accepted.")
+      .required("The terms and conditions must be accepted."),
+  }),
+  Yup.object().shape({
+    // Schemat walidacji dla drugiego kroku
+  }),
+  Yup.object().shape({
+    dreamPet: Yup.string().required("Wybierz zwierzę do adopcji"),
+    haveGarden: Yup.string().required("Wybierz opcję"),
+    havePets: Yup.string().required("Wybierz opcję"),
+    preferedAge: Yup.string().required("Wybierz opcję"),
+    preferedGender: Yup.string().required("Wybierz opcję"),
+    preferedSize: Yup.string().required("Wybierz opcję"),
+  }),
+  Yup.object().shape({
+    // Schemat walidacji dla czwartego kroku
+  }),
+];
+
+// const Step1ValidationSchema = Step1.validationSchema;
+// const Step3ValidationSchema = Step3.validationSchema;
 
 const steps = ["Twoje dane", "Styl życia", "Ankieta", "Wynik"];
 
@@ -91,7 +112,6 @@ const Questionnaire = () => {
     await sleep(1000);
     alert(JSON.stringify(values, null, 2));
     actions.setSubmitting(false);
-
     setActiveStep(activeStep + 1);
   }
 
@@ -99,7 +119,6 @@ const Questionnaire = () => {
     console.log("Form values:", values);
     console.log("Actions:", actions);
     console.log("isLastStep:", isLastStep);
-
     if (isLastStep) {
       await submitForm(values, actions);
     } else {
@@ -130,12 +149,13 @@ const Questionnaire = () => {
           ) : (
             <Formik
               initialValues={InitialFormState}
-              validationSchema={formValidation}
+              validationSchema={formValidation[activeStep]}
               onSubmit={handleSubmit}
             >
               {({ isSubmitting }) => (
                 <Form>
                   <Typography>{getContent(activeStep + 1)}</Typography>
+
                   <Box
                     sx={{
                       display: "flex",
