@@ -1,8 +1,8 @@
-import * as Yup from "yup";
 import { Grid, Container, Typography } from "@mui/material";
 import TextField from "../components/Texftield/texfield";
 import Select from "../components/Select/Select";
 // import voivodeship from "../data/voivodeship.json";
+
 import Checkbox from "../components/Checkbox/Checkbox";
 const Step1 = () => {
   const voivodeship = [
@@ -29,72 +29,63 @@ const Step1 = () => {
         <Container maxWidth="md">
           <Grid container spacing={2} p={2}>
             <Grid item xs={12}>
-              <Typography>TWOJE DANE</Typography>
+              <Typography mt={2} fontWeight="bold">
+                Personal information
+              </Typography>
             </Grid>
             <Grid item xs={6}>
-              <TextField name="firstName" label="Imię" />
+              <TextField name="firstName" label="First name *" />
             </Grid>
             <Grid item xs={6}>
-              <TextField name="lastName" label="Nazwisko" />
+              <TextField name="lastName" label="Last name *" />
             </Grid>
             <Grid item xs={12}>
-              <TextField name="email" label="E-mail" />
+              <TextField name="email" label="E-mail address *" />
             </Grid>
             <Grid item xs={12}>
-              <TextField name="phone" label="Telefon" />
+              <TextField name="phone" label="Phone number *" />
             </Grid>
             <Grid item xs={12}>
-              <Typography>ADRES</Typography>
+              <Typography mt={2} fontWeight="bold">
+                Address
+              </Typography>
             </Grid>
             <Grid item xs={12}>
               <Select
                 name="voivodeship"
-                label="Województwo"
+                label="Choose from the list *
+                "
                 options={voivodeship}
               />
             </Grid>
             <Grid item xs={6}>
-              <TextField name="postalCode" label="Kod pocztowy" />
+              <TextField name="postalCode" label="Postal code *" />
             </Grid>
             <Grid item xs={6}>
-              <TextField name="city" label="Miejscowość" />
+              <TextField name="city" label="City *" />
             </Grid>
             <Grid item xs={12}>
-              <TextField name="address1" label="Ulica" />
+              <TextField name="address1" label="Street *" />
             </Grid>
             <Grid item xs={6}>
-              <TextField name="address2" label="Numer domu" />
+              <TextField name="address2" label="Number *" />
             </Grid>
             <Grid item xs={6}>
-              <TextField name="address3" label="Numer mieszkania" />
+              <TextField name="address3" label="Apartement number" />
             </Grid>
-            <Grid item xs={12}>
-              <Typography>INFO</Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                name="message"
-                label="Tutaj możesz dodać komentarz."
-                multiline={true}
-                rows={4}
-              />
-            </Grid>
+
             <Grid item xs={12}>
               <Checkbox
                 name="termsOfService"
                 // legend="something something"
-                label="Wyrażam zgodę"
+                label={
+                  <Typography variant="body2" component="h3">
+                    Check this box to indicate that you have read and agree to
+                    our Terms of Service and Privacy Policy
+                  </Typography>
+                }
               />
             </Grid>
-            <Grid
-              item
-              xs={12}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            ></Grid>
           </Grid>
         </Container>
       </Grid>
@@ -102,55 +93,4 @@ const Step1 = () => {
   );
 };
 
-Step1.initialValue = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  voivodeship: "",
-  postalCode: "",
-  address1: "",
-  address2: "",
-  address3: "",
-  city: "",
-  message: "",
-  termsOfService: "false",
-};
-
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
-Step1.validationSchema = Yup.object().shape({
-  firstName: Yup.string()
-    .min(2, "Imię powinno być dłuższe niż 2 litery")
-    .max(50, "Imię powinno być krótsze niż 50 liter")
-    .required("Pole obowiązkowe"),
-  lastName: Yup.string()
-    .min(2, "Nazwisko powinno być dłuższe niż 2 litery")
-    .max(50, "Nazwisko powinno być dłuższe niż 2 litery")
-    .required("Pole obowiązkowe"),
-  email: Yup.string().email("Błędny mail.").required("Pole obowiązkowe"),
-  phone: Yup.string()
-    .min(9)
-    .max(9)
-    .nullable()
-    .matches(phoneRegExp, "Phone number is not valid")
-    // .typeError("Podaj prawidłowy numer telefonu")
-    .required("Pole obowiązkowe"),
-  address1: Yup.string().required("Pole obowiązkowe"),
-  address2: Yup.number()
-    .min(1)
-    // .typeError("Please enter a valid phone number")
-    .required("Pole obowiązkowe"),
-  address3: Yup.number().typeError("Please enter a valid phone number"),
-  city: Yup.string()
-    .min(3, "Miasto musi zawierać co najmniej 3 litery.")
-    .required("Pole obowiązkowe"),
-  voivodeship: Yup.string().required("Pole obowiązkowe"),
-  postalCode: Yup.number().min(5).integer().required("Pole obowiązkowe"),
-  message: Yup.string(),
-  termsOfService: Yup.boolean()
-    .oneOf([true], "The terms and conditions must be accepted.")
-    .required("The terms and conditions must be accepted."),
-});
 export default Step1;

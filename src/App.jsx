@@ -5,6 +5,7 @@ import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import Questionnaire from "./views/Questionnaire";
+import { green, grey, orange, red } from "@mui/material/colors";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -59,6 +60,34 @@ export default function ToggleColorMode() {
       createTheme({
         palette: {
           mode,
+          ...(mode === "light"
+            ? {
+                // light mode
+                primary: green,
+                divider: green[200],
+                background: {
+                  default: "#f6f6f6",
+                  paper: "#F0F3FF",
+                },
+
+                text: {
+                  primary: green[900],
+                  secondary: green[800],
+                },
+              }
+            : {
+                // dark mode
+                primary: orange,
+                divider: orange[700],
+                background: {
+                  default: "#2D3250",
+                  paper: "#424769",
+                },
+                text: {
+                  primary: "#EEEEEE",
+                  secondary: grey[500],
+                },
+              }),
         },
       }),
     [mode]

@@ -1,8 +1,8 @@
-import { Typography } from "@mui/material";
+import { Typography, Container } from "@mui/material";
 
 const Summary = () => {
   return (
-    <div>
+    <Container maxWidth="md" p={2}>
       <Typography variant="h5" gutterBottom>
         Thank you for your order.
       </Typography>
@@ -10,7 +10,7 @@ const Summary = () => {
         Your order number is #2001539. We have emailed your order confirmation,
         and will send you an update when your order has shipped.
       </Typography>
-    </div>
+    </Container>
   );
 };
 

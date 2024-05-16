@@ -12,6 +12,7 @@ import { Button } from "@mui/material";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import Summary from "./Summary";
+
 const InitialFormState = {
   firstName: "",
   lastName: "",
@@ -25,11 +26,11 @@ const InitialFormState = {
   city: "",
   message: "",
   termsOfService: "false",
-  dreamPet: "", // Dodajemy pole z Step3 do InitialFormState
-  haveGarden: "", // Dodajemy pole z Step3 do InitialFormState
-  havePets: "", // Dodajemy pole z Step3 do InitialFormState
-  preferedAge: "", // Dodajemy pole z Step3 do InitialFormState
-  preferedGender: "", // Dodajemy pole z Step3 do InitialFormState
+  dreamPet: "",
+  haveGarden: "",
+  havePets: "",
+  preferedAge: "",
+  preferedGender: "",
   preferedSize: "",
 };
 
@@ -67,7 +68,7 @@ const formValidation = [
       .required("The terms and conditions must be accepted."),
   }),
   Yup.object().shape({
-    // Schemat walidacji dla drugiego kroku
+    // Step2
   }),
   Yup.object().shape({
     dreamPet: Yup.string().required("Wybierz zwierzę do adopcji"),
@@ -78,14 +79,11 @@ const formValidation = [
     preferedSize: Yup.string().required("Wybierz opcję"),
   }),
   Yup.object().shape({
-    // Schemat walidacji dla czwartego kroku
+    // Step4
   }),
 ];
 
-// const Step1ValidationSchema = Step1.validationSchema;
-// const Step3ValidationSchema = Step3.validationSchema;
-
-const steps = ["Twoje dane", "Styl życia", "Ankieta", "Wynik"];
+const steps = ["Personal information", "Lifestyle", "Survey", "Your questions"];
 
 function getContent(step) {
   switch (step) {

@@ -19,7 +19,7 @@ const SliderWrapper = ({ name, ...otherProps }) => {
           aria-labelledby={name}
           valueLabelDisplay="auto"
           onChange={handleChange}
-          sx={{ color: "#3f7cac" }}
+          // sx={{ color: "#3f7cac" }}
         />
       </Box>
     </div>

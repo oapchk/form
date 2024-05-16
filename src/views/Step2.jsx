@@ -15,11 +15,11 @@ const Step2 = () => {
   return (
     <Container>
       <Box p={2}>
-        <Typography variant="h6">
-          Przesuń suwak zgodnie ze swoim stylem życia
+        <Typography variant="h6" fontWeight="bold">
+          Fill out your personalized preferences
         </Typography>
         <Typography variant="body2" mb={3}>
-          Ułatwi to nam wybór odpowiedniego zwierzaka dla Ciebie 🐈
+          We&apos;ll match you with your dream pet based on your answers 🐈
         </Typography>
         <Grid container spacing={5} p={2} mb={8} flexDirection={"column"}>
           <Grid
@@ -32,7 +32,7 @@ const Step2 = () => {
           >
             <Grid item display={"flex"}>
               <NaturePeopleOutlinedIcon />
-              <Typography pl={2}>Wolę być na świeżym powietrzu</Typography>
+              <Typography pl={2}>I prefere being outdoors</Typography>
             </Grid>
             <SwitchWrapper name="outdoorPerson" />
           </Grid>
@@ -46,7 +46,7 @@ const Step2 = () => {
           >
             <Grid item display={"flex"}>
               <ParkOutlinedIcon />
-              <Typography pl={2}>Mieszkam blisko parku</Typography>
+              <Typography pl={2}>I live near park</Typography>
             </Grid>
             <SwitchWrapper name="liveNearPark" />
           </Grid>
@@ -60,34 +60,34 @@ const Step2 = () => {
           >
             <Grid item display={"flex"}>
               <LuggageOutlinedIcon />
-              <Typography pl={2}>Często podróżuje służbowo</Typography>
+              <Typography pl={2}>I travel for work often</Typography>
             </Grid>
             <SwitchWrapper name="workTravelFrequently" />
           </Grid>
         </Grid>
         <Grid container spacing={5} mb={3} pl={4}>
           <Grid item xs={12} sm={6}>
-            <Typography gutterBottom>Lubię towarzystwo</Typography>
+            <Typography gutterBottom>I am very sociable</Typography>
             <SliderWrapper name="sociable" min={0} max={100} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography gutterBottom>Gotuję w domu</Typography>
+            <Typography gutterBottom>I cook every night</Typography>
             <SliderWrapper name="cook" min={0} max={100} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography gutterBottom>Lubię chodzić na imprezy</Typography>
+            <Typography gutterBottom>I like going to parties</Typography>
             <SliderWrapper name="partyanimal" min={0} max={100} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography gutterBottom>Często podróżuję</Typography>
+            <Typography gutterBottom>I travel often</Typography>
             <SliderWrapper name="traveler" min={0} max={100} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography gutterBottom>Lubię aktywność fizyczną</Typography>
+            <Typography gutterBottom>I am very active</Typography>
             <SliderWrapper name="sportsman" min={0} max={100} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography gutterBottom>Wcześnie chodzę spać</Typography>
+            <Typography gutterBottom>I go to sleep early</Typography>
             <SliderWrapper name="sleepyhead" min={0} max={100} />
           </Grid>
         </Grid>

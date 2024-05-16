@@ -18,7 +18,7 @@ const SwitchWrapper = ({ name, label, ...otherProps }) => {
           {...field}
           {...otherProps}
           onChange={handleChange}
-          sx={{ color: "#3f7cac" }}
+          // sx={{ color: "#3f7cac" }}
         />
       }
       label={label}
