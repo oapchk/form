@@ -29,7 +29,7 @@ const Step1 = () => {
         <Container maxWidth="md">
           <Grid container spacing={2} p={2}>
             <Grid item xs={12}>
-              <Typography mt={2} fontWeight="bold">
+              <Typography mt={2} sx={{ letterSpacing: 1 }}>
                 Personal information
               </Typography>
             </Grid>
@@ -46,7 +46,7 @@ const Step1 = () => {
               <TextField name="phone" label="Phone number *" />
             </Grid>
             <Grid item xs={12}>
-              <Typography mt={2} fontWeight="bold">
+              <Typography mt={2} sx={{ letterSpacing: 1 }}>
                 Address
               </Typography>
             </Grid>
@@ -79,7 +79,7 @@ const Step1 = () => {
                 name="termsOfService"
                 // legend="something something"
                 label={
-                  <Typography variant="body2" component="h3">
+                  <Typography variant="caption" component="h3">
                     Check this box to indicate that you have read and agree to
                     our Terms of Service and Privacy Policy
                   </Typography>

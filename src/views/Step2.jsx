@@ -15,7 +15,7 @@ const Step2 = () => {
   return (
     <Container>
       <Box p={2}>
-        <Typography variant="h6" fontWeight="bold">
+        <Typography variant="h6">
           Fill out your personalized preferences
         </Typography>
         <Typography variant="body2" mb={3}>

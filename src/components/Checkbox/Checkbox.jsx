@@ -38,7 +38,7 @@ const CheckboxWrapper = ({ name, label, legend }) => {
           label={label}
         />
         {meta.touched && meta.error ? (
-          <Typography variant="caption" style={{ color: "red" }}>
+          <Typography variant="caption" style={{ color: "#cddc39" }}>
             {meta.error}
           </Typography>
         ) : null}
