@@ -6,13 +6,13 @@ import {
   FormLabel,
 } from "@mui/material";
 import { useField, useFormikContext } from "formik";
-import { Typography } from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
 import PropTypes from "prop-types";
 
 const CheckboxWrapper = ({ name, label, legend }) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
-
+  const theme = useTheme();
   const handleChange = (evt) => {
     const { checked } = evt.target;
     setFieldValue(name, checked);
@@ -38,7 +38,12 @@ const CheckboxWrapper = ({ name, label, legend }) => {
           label={label}
         />
         {meta.touched && meta.error ? (
-          <Typography variant="caption" style={{ color: "#cddc39" }}>
+          <Typography
+            variant="caption"
+            style={{
+              color: theme.palette.mode === "light" ? "red" : "#cddc39",
+            }}
+          >
             {meta.error}
           </Typography>
         ) : null}
@@ -50,6 +55,6 @@ const CheckboxWrapper = ({ name, label, legend }) => {
 CheckboxWrapper.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  // legend: PropTypes.string.isRequired,
+  legend: PropTypes.string,
 };
 export default CheckboxWrapper;

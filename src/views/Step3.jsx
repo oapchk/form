@@ -39,11 +39,9 @@ const Step3 = () => {
   return (
     <Container maxWidth="md">
       {questions.map((question) => (
-        <Grid pb={2} container spacing={2} key={question.id}>
+        <Grid pb={2} container spacing={1} key={question.id}>
           <Grid item xs={12}>
-            <Typography variant="body1" mt={2} fontWeight="bold">
-              {question.question}:
-            </Typography>
+            <Typography mt={2}>{question.question}:</Typography>
           </Grid>
           <Grid item xs={12}>
             <FormControl fullWidth>

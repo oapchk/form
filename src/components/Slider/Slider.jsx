@@ -12,14 +12,13 @@ const SliderWrapper = ({ name, ...otherProps }) => {
 
   return (
     <div>
-      <Box width={300}>
+      <Box maxWidth={300}>
         <Slider
           {...field}
           {...otherProps}
           aria-labelledby={name}
           valueLabelDisplay="auto"
           onChange={handleChange}
-          // sx={{ color: "#3f7cac" }}
         />
       </Box>
     </div>

@@ -1,10 +1,11 @@
-import { TextField, MenuItem } from "@mui/material";
+import { TextField, MenuItem, useTheme } from "@mui/material";
 import { useField, useFormikContext } from "formik";
 import PropTypes from "prop-types";
 
 const Select = ({ name, options, ...otherProps }) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
+  const theme = useTheme();
 
   // const handleChange = (e) => {
   //   const { value } = e.target;
@@ -22,6 +23,9 @@ const Select = ({ name, options, ...otherProps }) => {
     variant: "outlined",
     fullWidth: true,
     onChange: handleChange,
+    sx: {
+      backgroundColor: theme.palette.mode === "light" ? "#F9F9FB" : "#424769",
+    },
   };
 
   if (meta && meta.touched && meta.error) {

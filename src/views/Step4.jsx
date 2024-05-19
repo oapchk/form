@@ -6,7 +6,7 @@ const Step4 = () => {
     <Container maxWidth="md">
       <Grid container spacing={2} p={2}>
         <Grid item xs={12}>
-          <Typography fontWeight="bold">
+          <Typography variant="h6">
             Do you have any additional questions or information you&apos;d like
             to share with us?
           </Typography>

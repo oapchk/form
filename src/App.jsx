@@ -5,7 +5,7 @@ import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import Questionnaire from "./views/Questionnaire";
-import { grey, lime, teal, yellow } from "@mui/material/colors";
+import { grey, teal, yellow } from "@mui/material/colors";
 import "./App.css";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
@@ -61,6 +61,9 @@ export default function ToggleColorMode() {
       createTheme({
         typography: {
           fontFamily: ["Source Sans", "sans-serif"].join(","),
+          h1: {
+            fontFamily: ["Dancing Script", "cursive"].join(","),
+          },
         },
         palette: {
           mode,
@@ -92,7 +95,7 @@ export default function ToggleColorMode() {
                   secondary: grey[500],
                 },
                 error: {
-                  main: lime[500],
+                  main: "#c6ff00",
                 },
               }),
         },

@@ -13,15 +13,15 @@ import SliderWrapper from "../components/Slider/Slider";
 import SwitchWrapper from "../components/Switch/Switch";
 const Step2 = () => {
   return (
-    <Container>
-      <Box p={2}>
+    <Container maxWidth="md">
+      <Box maxWidth="md" p={2}>
         <Typography variant="h6">
           Fill out your personalized preferences
         </Typography>
         <Typography variant="body2" mb={3}>
           We&apos;ll match you with your dream pet based on your answers 🐈
         </Typography>
-        <Grid container spacing={5} p={2} mb={8} flexDirection={"column"}>
+        <Grid container spacing={5} mb={8} flexDirection={"column"}>
           <Grid
             item
             sx={12}
@@ -65,7 +65,7 @@ const Step2 = () => {
             <SwitchWrapper name="workTravelFrequently" />
           </Grid>
         </Grid>
-        <Grid container spacing={5} mb={3} pl={4}>
+        <Grid container spacing={4} mb={3} ml={{ md: 0, lg: 0, xl: 0 }}>
           <Grid item xs={12} sm={6}>
             <Typography gutterBottom>I am very sociable</Typography>
             <SliderWrapper name="sociable" min={0} max={100} />
